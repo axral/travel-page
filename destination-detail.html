@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Destination Details</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1><strong>Destination Details</strong></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="destination-detail" style="max-width: 900px; margin: 30px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+      <div id="detail-root"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Dream Travel</p>
+  </footer>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const destinations = {
+      delhi: {
+        img: "delhi.jpg",
+        alt: "Beautiful view of Delhi",
+        overview: `Delhi, India's sprawling capital, is a vibrant fusion of history and modern life. The city boasts ancient monuments, bustling markets, and diverse cultural experiences that reflect centuries of rich heritage.`,
+        attractions: `Explore the iconic Red Fort, a magnificent fortress representing Mughal grandeur. Wander through the towering Qutub Minar, the tallest brick minaret in the world. Relax at India Gate, a majestic war memorial surrounded by lush gardens, or visit the serene Lotus Temple, welcoming people of all faiths with its unique flower-like design.`,
+        tips: `Plan your visit between October and March when the weather is pleasant. The Delhi Metro offers an efficient and affordable way to navigate the city. When trying street food, stick to popular and hygienic stalls to avoid any health issues. Respect local customs and dress modestly, especially when visiting religious sites.`,
+        packing: `Pack light, breathable clothing for daytime and a warm jacket for chilly winter evenings. Comfortable walking shoes are essential to explore the busy markets and historic sites. Don’t forget sun protection like hats, sunglasses, and sunscreen, along with a reusable water bottle to stay hydrated.`,
+        foodCulture: `Delhi is famous for its diverse and flavorful cuisine. Don't miss tasting butter chicken, spicy chaat snacks, stuffed parathas, and the sweet jalebi. Street food is a must-try experience but be selective with vendors known for quality and cleanliness.`,
+        itinerary: `Spend your first day exploring Old Delhi, including a rickshaw ride through Chandni Chowk and visiting the Red Fort. On day two, visit the Qutub Minar complex and the tranquil Lotus Temple. Your third day can be spent relaxing in Lodhi Gardens followed by shopping in Connaught Place’s vibrant markets.`,
+        links: [
+          { text: "Delhi Tourism Official Site", url: "https://www.delhitourism.gov.in" },
+          { text: "Delhi Metro Map", url: "https://www.delhimetrorail.com/map" },
+        ],
+      },
+      paris: {
+        img: "paris.jpg",
+        alt: "Eiffel Tower in Paris",
+        overview: `Paris, famously known as the City of Light, offers an enchanting blend of art, culture, and history. Known for its romantic ambiance, it’s a top destination for travelers seeking world-class museums, delicious cuisine, and stunning architecture.`,
+        attractions: `Visit the Eiffel Tower, an enduring symbol of Paris, and enjoy panoramic city views. The Louvre Museum houses countless masterpieces including the Mona Lisa and Venus de Milo. Notre-Dame Cathedral showcases exquisite French Gothic architecture, while Montmartre offers bohemian charm with artists’ studios and the iconic Sacré-Cœur Basilica.`,
+        tips: `The best times to visit are spring and fall, which feature mild weather and fewer crowds. Learning basic French greetings is appreciated by locals. Consider purchasing a Paris Museum Pass for discounted entry to major attractions. Paris’ metro system is extensive and the best way to get around quickly.`,
+        packing: `Bring comfortable shoes for walking on cobblestone streets, layered clothing for changing weather, and a camera or smartphone with extra storage. Don’t forget a compact umbrella to be prepared for sudden showers.`,
+        foodCulture: `Paris is famous for its pastries, fine cheeses, and wine. Delight in local dishes like coq au vin and escargot. Sampling a fresh, buttery croissant from a neighborhood bakery is a must.`,
+        itinerary: `Start with the Eiffel Tower and a serene Seine River cruise on day one. Day two includes visits to the Louvre Museum and Notre-Dame Cathedral. Spend day three wandering Montmartre, visiting Sacré-Cœur, and relaxing at charming local cafes.`,
+        links: [
+          { text: "Paris Tourism Official Site", url: "https://en.parisinfo.com" },
+          { text: "Seine River Cruises", url: "https://www.bateauxparisiens.com" },
+        ],
+      },
+      "new york": {
+        img: "newyork.jpg",
+        alt: "Skyline of New York City",
+        overview: `New York City is a bustling metropolis famous for its iconic skyline, diverse culture, and endless entertainment options. It’s a city that never sleeps and offers experiences ranging from world-class museums to Broadway shows.`,
+        attractions: `Must-see sites include the Statue of Liberty, symbolizing freedom and democracy; Central Park, a green oasis in the city; the Metropolitan Museum of Art with its vast collections; and Times Square, glowing with neon lights and energy.`,
+        tips: `Visit in spring or fall for pleasant weather and smaller crowds. Use the extensive subway system for quick and cost-effective travel. Booking Broadway shows in advance is recommended. Be prepared for lots of walking and urban hustle.`,
+        packing: `Comfortable walking shoes are essential. Bring layered clothing to accommodate varying temperatures. Don’t forget a camera and a portable charger to capture your adventures.`,
+        foodCulture: `New York boasts diverse food from street vendors to Michelin-starred restaurants. Try classic New York-style pizza, bagels with lox, and international cuisine reflecting the city’s cultural melting pot.`,
+        itinerary: `Day one might include visiting the Statue of Liberty and Ellis Island. Day two can be spent in Central Park and exploring the Museum of Modern Art. On day three, experience Times Square, Rockefeller Center, and shopping in SoHo.`,
+        links: [
+          { text: "NYC Official Guide", url: "https://www.nycgo.com" },
+          { text: "MTA Subway Map", url: "https://new.mta.info/maps/subway" },
+        ],
+      },
+      kuwait: {
+        img: "kuwait.jpg",
+        alt: "Cityscape of Kuwait",
+        overview: `Kuwait City is a modern metropolis known for its striking skyscrapers, vibrant souks, and rich cultural heritage. It blends Arabian tradition with contemporary lifestyle, offering visitors a unique Middle Eastern experience.`,
+        attractions: `Explore the Kuwait Towers, iconic landmarks offering panoramic city views. Visit the Grand Mosque, a stunning example of Islamic architecture. The Kuwait National Museum provides deep insights into the country’s history and culture.`,
+        tips: `Best time to visit is between November and April to avoid extreme summer heat. Dress modestly and respect local customs. Use taxis or ride-hailing apps for convenient city travel.`,
+        packing: `Pack lightweight, modest clothing suitable for hot weather, and a light jacket for cooler evenings. Comfortable sandals or shoes are advisable. Sun protection is important due to strong desert sun.`,
+        foodCulture: `Kuwaiti cuisine features dishes like machboos (spiced rice with meat), grilled seafood, and fresh dates. Try local sweets such as baklava and luqaimat, enjoyed with Arabic coffee or tea.`,
+        itinerary: `Spend your first day visiting Kuwait Towers and the seaside promenade. On day two, tour the Grand Mosque and the National Museum. Day three can include shopping at the Souk Al-Mubarakiya and relaxing at the Corniche waterfront.`,
+        links: [
+          { text: "Kuwait Tourism", url: "https://www.visitkuwait.com" },
+        ],
+      },
+      dubai: {
+        img: "dubai.jpg",
+        alt: "Dubai skyline with Burj Khalifa",
+        overview: `Dubai is a dazzling city known for its futuristic skyline, luxury shopping, and vibrant nightlife. It offers an extraordinary mix of modernity and Arabian tradition, making it a top destination worldwide.`,
+        attractions: `Marvel at the Burj Khalifa, the world’s tallest building, and enjoy panoramic views from its observation decks. Explore the Dubai Mall, a shopper’s paradise with an indoor aquarium. The historic Al Fahidi neighborhood offers a glimpse into Dubai’s past.`,
+        tips: `Visit between November and March to enjoy cooler temperatures. Respect local customs, especially during Ramadan. Public transport and taxis make it easy to explore the city.`,
+        packing: `Pack light, breathable clothing for the heat, but also a shawl or scarf for entering religious sites. Comfortable shoes are a must for walking and desert tours.`,
+        foodCulture: `Dubai offers a wide range of cuisine, from traditional Emirati dishes to international fare. Don’t miss trying shawarma, camel meat delicacies, and sweet treats like kunafa.`,
+        itinerary: `Day one can include Burj Khalifa and Dubai Mall. Day two might be dedicated to exploring Al Fahidi, the Dubai Museum, and a desert safari. Spend day three relaxing at Jumeirah Beach and visiting the Dubai Marina.`,
+        links: [
+          { text: "Dubai Tourism", url: "https://www.visitdubai.com" },
+        ],
+      },
+      hawaii: {
+        img: "hawaii.jpg",
+        alt: "Beautiful beach in Hawaii",
+        overview: `Hawaii is a tropical paradise known for its stunning beaches, lush landscapes, and rich Polynesian culture. It’s a perfect getaway for nature lovers and adventure seekers alike.`,
+        attractions: `Visit the famous Waikiki Beach for surfing and sunbathing. Explore Volcanoes National Park, home to active volcanoes and unique ecosystems. Experience traditional Hawaiian culture at luaus and cultural centers.`,
+        tips: `The best time to visit is April through October for dry, sunny weather. Rent a car for the most flexibility. Always respect local customs and natural areas.`,
+        packing: `Bring swimsuits, light clothing, and hiking shoes. Don’t forget reef-safe sunscreen and insect repellent.`,
+        foodCulture: `Hawaiian cuisine features fresh seafood, tropical fruits, and traditional dishes like poke and kalua pig. Enjoy shaved ice desserts and local coffee blends.`,
+        itinerary: `Spend your first day at Waikiki Beach and exploring Honolulu. On day two, visit Volcanoes National Park and local markets. Day three is perfect for hiking and attending a traditional luau.`,
+        links: [
+          { text: "Hawaii Tourism", url: "https://www.gohawaii.com" },
+        ],
+      },
+      merlion: {
+        img: "merlion.jpg",
+        alt: "Visit the iconic Merlion",
+        overview: `Singapore’s Merlion is a symbol of the city-state, combining a lion’s head and a fish’s body to represent its origins as a fishing village and its original name “Singapura” meaning Lion City.`,
+        attractions: `Besides the iconic Merlion statue, explore Marina Bay Sands, Gardens by the Bay, and the vibrant Chinatown. Singapore offers world-class dining and clean, green urban spaces.`,
+        tips: `Visit during the cooler months between February and April. Public transport is excellent, with an easy-to-use MRT system. Dress comfortably and carry an umbrella for occasional rain.`,
+        packing: `Lightweight, breathable clothes are essential in Singapore’s humid climate. Comfortable shoes for walking and a rain jacket or umbrella are recommended.`,
+        foodCulture: `Singapore is a food lover’s paradise with hawker centers offering dishes like chili crab, laksa, and Hainanese chicken rice.`,
+        itinerary: `Day one can focus on the Merlion Park and Marina Bay Sands. Day two includes Gardens by the Bay and Chinatown. Day three might be spent exploring Sentosa Island or shopping in Orchard Road.`,
+        links: [
+          { text: "Singapore Tourism", url: "https://www.visitsingapore.com" },
+        ],
+      },
+      seoul: {
+        img: "seoul.jpg",
+        alt: "Mix of modernity and tradition in Seoul",
+        overview: `Seoul is a dynamic city where ancient palaces and temples blend seamlessly with cutting-edge technology and skyscrapers. It offers vibrant street markets, delicious food, and rich history.`,
+        attractions: `Visit Gyeongbokgung Palace, the largest of the Five Grand Palaces. Explore Bukchon Hanok Village to see traditional Korean houses. Don’t miss the bustling Myeongdong shopping district.`,
+        tips: `Best time to visit is spring and autumn for comfortable weather. Learn a few basic Korean phrases to enhance your experience. The subway is convenient and affordable for getting around.`,
+        packing: `Pack layers to adjust to varying temperatures. Comfortable shoes are a must for exploring markets and palaces.`,
+        foodCulture: `Korean cuisine is rich and flavorful, featuring dishes like bibimbap, Korean BBQ, and kimchi. Street food stalls offer tasty snacks like tteokbokki and hotteok.`,
+        itinerary: `Spend day one visiting Gyeongbokgung Palace and nearby museums. Day two can be exploring Bukchon Hanok Village and Myeongdong. Day three might include hiking in Bukhansan National Park or visiting the Dongdaemun Design Plaza.`,
+        links: [
+          { text: "Visit Seoul", url: "http://english.visitseoul.net" },
+        ],
+      },
+      rome: {
+        img: "rome.jpg",
+        alt: "Colosseum in Rome",
+        overview: `Rome, the Eternal City, is a treasure trove of history, art, and architecture. Its ancient ruins, magnificent churches, and vibrant street life make it a must-visit for travelers.`,
+        attractions: `Explore the Colosseum, the grand amphitheater of the Roman Empire. Visit the Roman Forum and Palatine Hill to walk in the footsteps of ancient Romans. The Vatican City, home to St. Peter’s Basilica and the Sistine Chapel, is awe-inspiring.`,
+        tips: `Visit during spring or fall to avoid extreme heat and crowds. Wear comfortable shoes for cobblestone streets. Purchase tickets in advance for popular attractions.`,
+        packing: `Lightweight, breathable clothing is ideal for summer visits. Comfortable walking shoes are essential. Bring a scarf or shawl for visits to religious sites.`,
+        foodCulture: `Italian cuisine in Rome is rich and hearty, with specialties like pasta carbonara, Roman-style pizza, and gelato. Try local markets for fresh produce and cheeses.`,
+        itinerary: `Spend your first day exploring the Colosseum, Roman Forum, and Palatine Hill. Day two is dedicated to the Vatican Museums, St. Peter’s Basilica, and Piazza Navona. On day three, stroll through Trastevere and visit the Pantheon.`,
+        links: [
+          { text: "Rome Tourism", url: "https://www.turismoroma.it/en" },
+        ],
+      },
+      tokyo: {
+        img: "tokyo.jpg",
+        alt: "Bustling city lights of Tokyo",
+        overview: `Tokyo is a vibrant metropolis blending futuristic technology with deep-rooted traditions. It offers eclectic neighborhoods, world-class cuisine, and stunning cultural experiences.`,
+        attractions: `Visit the historic Senso-ji Temple in Asakusa and the bustling Shibuya Crossing. Explore the Meiji Shrine and the trendy Harajuku district. Don’t miss the Tokyo Tower or the Imperial Palace gardens.`,
+        tips: `Spring (cherry blossom season) and autumn are the best times to visit. Learn some basic Japanese greetings. Use the efficient subway system for travel.`,
+        packing: `Pack layers for varying temperatures and comfortable walking shoes. An umbrella is handy during rainy seasons.`,
+        foodCulture: `Tokyo’s food scene ranges from sushi and ramen to street food stalls and Michelin-starred restaurants. Try fresh seafood at Tsukiji Market and regional specialties.`,
+        itinerary: `Spend day one at Senso-ji Temple and Asakusa markets. Day two can be Shibuya Crossing, Meiji Shrine, and Harajuku. Day three includes Tokyo Tower and the Imperial Palace.`,
+        links: [
+          { text: "Tokyo Tourism", url: "https://www.gotokyo.org/en/" },
+        ],
+      },
+      cairo: {
+        img: "cairo.jpg",
+        alt: "Timeless pyramids and desert charm of Cairo",
+        overview: `Cairo is a city where ancient history meets modern hustle. It is home to the legendary pyramids and vibrant markets that tell stories of Egypt's rich civilization.`,
+        attractions: `Marvel at the Great Pyramids of Giza and the Sphinx, timeless symbols of ancient Egypt. Visit the Egyptian Museum housing priceless artifacts, and stroll through the Khan El Khalili bazaar for unique souvenirs.`,
+        tips: `Visit during cooler months from October to April. Stay hydrated and dress modestly. Use reputable guides for pyramid tours.`,
+        packing: `Light, breathable clothing and a wide-brimmed hat are essential for sun protection. Comfortable walking shoes are important for exploring uneven terrain.`,
+        foodCulture: `Egyptian cuisine features dishes like koshari, falafel, and ful medames. Street food is delicious but choose clean vendors.`,
+        itinerary: `Day one can focus on the pyramids and Sphinx. Day two includes the Egyptian Museum and Islamic Cairo. Day three is perfect for exploring local markets and trying traditional food.`,
+        links: [
+          { text: "Egypt Tourism", url: "https://egymonuments.gov.eg" },
+        ],
+      },
+      sydney: {
+        img: "sydney.jpg",
+        alt: "Iconic Opera House by the Sydney Harbour",
+        overview: `Sydney is a stunning harbor city famous for its iconic Opera House and Harbour Bridge. It offers beautiful beaches, vibrant arts scenes, and outdoor adventures.`,
+        attractions: `Visit the Sydney Opera House and take a stroll on the Harbour Bridge. Relax on Bondi Beach and explore the Royal Botanic Garden. Don’t miss the historic Rocks district with its markets and cafes.`,
+        tips: `Best visited in spring and autumn for mild weather. Public transport and ferries make sightseeing easy. Sunscreen and hats are essential for outdoor activities.`,
+        packing: `Pack beachwear, comfortable walking shoes, and layered clothing for variable weather.`,
+        foodCulture: `Sydney offers fresh seafood and multicultural dining options. Try local specialties like meat pies, pavlova, and Aussie BBQ.`,
+        itinerary: `Day one includes the Opera House and Harbour Bridge walk. Day two can be Bondi Beach and coastal walks. Day three might include Taronga Zoo and the Rocks markets.`,
+        links: [
+          { text: "Sydney Tourism", url: "https://www.sydney.com" },
+        ],
+      },
+    };
+
+    function DestinationDetail() {
+      // Extract destination from URL hash or query string
+      const [destKey, setDestKey] = React.useState(null);
+
+      React.useEffect(() => {
+        function getDestinationFromURL() {
+          // Try query string ?destination=delhi or hash #delhi
+          const params = new URLSearchParams(window.location.search);
+          if (params.has("destination")) {
+            return params.get("destination").toLowerCase();
+          }
+          if (window.location.hash) {
+            return window.location.hash.substring(1).toLowerCase();
+          }
+          return null;
+        }
+        setDestKey(getDestinationFromURL());
+      }, []);
+
+      if (!destKey) {
+        return <p>Please select a destination from the <a href="destination.html">Destinations page</a>.</p>;
+      }
+
+      const dest = destinations[destKey];
+      if (!dest) {
+        return <p>Sorry, details for "{destKey}" are not available. Please check the <a href="destination.html">Destinations page</a>.</p>;
+      }
+
+      return (
+        <>
+          <h2 style={{ textAlign: "center" }}>{destKey.charAt(0).toUpperCase() + destKey.slice(1)}</h2>
+          <img src={dest.img} alt={dest.alt} style={{ maxWidth: "100%", borderRadius: "10px", marginBottom: "20px" }} />
+          <section>
+            <h3>Overview</h3>
+            <p>{dest.overview}</p>
+          </section>
+          <section>
+            <h3>Main Attractions</h3>
+            <p>{dest.attractions}</p>
+          </section>
+          <section>
+            <h3>Travel Tips</h3>
+            <p>{dest.tips}</p>
+          </section>
+          <section>
+            <h3>Packing Suggestions</h3>
+            <p>{dest.packing}</p>
+          </section>
+          <section>
+            <h3>Food & Culture</h3>
+            <p>{dest.foodCulture}</p>
+          </section>
+          <section>
+            <h3>Suggested Itinerary</h3>
+            <p>{dest.itinerary}</p>
+          </section>
+          <section>
+            <h3>Useful Links</h3>
+            <ul>
+              {dest.links.map((link, index) => (
+                <li key={index}>
+                  <a href={link.url} target="_blank" rel="noopener noreferrer">{link.text}</a>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <button
+            onClick={() => window.history.back()}
+            style={{
+              marginTop: "30px",
+              padding: "10px 20px",
+              fontSize: "16px",
+              cursor: "pointer",
+              borderRadius: "5px",
+              backgroundColor: "#464da7",
+              color: "white",
+              border: "none"
+            }}
+          >
+            Go Back
+          </button>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("detail-root")).render(<DestinationDetail />);
+  </script>
+</body>
+</html>

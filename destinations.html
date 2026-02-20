@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Popular Destinations</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <h1><strong>Popular Destinations</strong></h1>
+        <nav>
+            <ul>
+                <li><a href="travel.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="destinations">
+            <h2>Discover Your Next Destination</h2>
+
+            <!-- React app mounts here -->
+            <div id="destinations-root"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>2025 Dream Travel!!!!</p>
+    </footer>
+
+    <!-- React + Babel scripts -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- React JSX code -->
+    <script type="text/babel">
+        const destinations = [
+            { name: "Delhi", img: "delhi.jpg", alt: "Beautiful view of Delhi" },
+            { name: "Paris", img: "paris.jpg", alt: "Eiffel Tower in Paris" },
+            { name: "New York", img: "newyork.jpg", alt: "Skyline of New York City" },
+            { name: "Kuwait", img: "kuwait.jpg", alt: "Cityscape of Kuwait" },
+            { name: "Dubai", img: "dubai.jpg", alt: "Dubai skyline with Burj Khalifa" },
+            { name: "Hawaii", img: "hawaii.jpg", alt: "Beautiful beach in Hawaii" },
+            { name: "Merlion", img: "merlion.jpg", alt: "Visit the iconic Merlion" },
+            { name: "Seoul", img: "seoul.jpg", alt: "Mix of modernity and tradition in Seoul" },
+            { name: "Rome", img: "rome.jpg", alt: "Colosseum in Rome" },
+            { name: "Tokyo", img: "tokyo.jpg", alt: "Bustling city lights of Tokyo" },
+            { name: "Cairo", img: "cairo.jpg", alt: "Timeless pyramids and desert charm of Cairo" },
+            { name: "Sydney", img: "sydney.jpg", alt: "Iconic Opera House by the Sydney Harbour" }
+        ];
+
+        function DestinationsApp() {
+            const [search, setSearch] = React.useState("");
+
+            // Filter destinations live by search input (case-insensitive)
+            const filtered = destinations.filter(dest =>
+                dest.name.toLowerCase().includes(search.toLowerCase())
+            );
+
+            // If search empty, show all destinations; else show filtered only
+            const destinationsToShow = search.trim() === "" ? destinations : filtered;
+
+            return (
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Search for a destination..."
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
+                        style={{
+                            padding: "10px",
+                            width: "80%",
+                            maxWidth: "400px",
+                            marginBottom: "20px",
+                            fontSize: "1.1rem",
+                            borderRadius: "5px",
+                            border: "1px solid #ccc"
+                        }}
+                    />
+                    <div className="destinations-container">
+                        {destinationsToShow.length > 0 ? (
+                            destinationsToShow.map(dest => (
+                                <div key={dest.name} className="destination-card">
+                                    <img src={dest.img} alt={dest.alt} />
+                                    <h3>{dest.name}</h3>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No destinations found.</p>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById("destinations-root"));
+        root.render(<DestinationsApp />);
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Dream Travel</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6fc;
+      color: #222;
+    }
+
+    header {
+      background-color: #3f51b5;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    main {
+      padding: 40px 20px;
+    }
+
+    .about-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #e8eaf6;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-container h2,
+    .about-container h3 {
+      text-align: center;
+      color: #333366;
+      margin-bottom: 20px;
+    }
+
+    .about-container p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-image {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .about-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      background-color: #34495e;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    #social-media {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    #social-media img {
+      width: 30px;
+      height: 30px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+
+    #social-media img:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><strong>DREAM TRAVEL PAGE</strong></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="about-container">
+        <h2>🌍 About Us</h2>
+        <p>
+          At Dream Travel, we believe that travel is more than just visiting new places; it's about experiencing the world with all your senses, creating memories that last a lifetime, and discovering the beauty in the unknown.
+        </p>
+        <p>
+          Founded by a team of passionate explorers, adventurers, and travel enthusiasts, we are here to help you unlock the wonders of the world. Whether you're dreaming of strolling through the ancient streets of Rome, watching the sunset over the serene beaches of Bali, or hiking the snow-capped peaks of the Himalayas, we have got the perfect destination just for you.
+        </p>
+        <p>
+          Our mission is simple: to make your travel dreams a reality. We offer personalized travel packages, curated experiences, and expert advice to guide you every step of the way. From the moment you choose your destination to the day you return home with unforgettable memories, we are here to make your journey as seamless, exciting, and enriching as possible.
+        </p>
+        <p>
+          At Dream Travel, we don't just plan trips—we craft experiences. Your adventure starts with us, but it lasts a lifetime. Join us in exploring the world!
+        </p>
+
+        <div class="about-image">
+          <img src="travel.jpg" alt="Travel" />
+        </div>
+
+        <div class="mission">
+          <h3>🎯 Our Mission</h3>
+          <p>
+            Our mission is simple: to help you explore the world with ease and excitement. We bring you the best travel experiences that make every moment special.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Dream Travel</p>
+    <div id="social-media">
+      <a href="https://www.facebook.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" />
+      </a>
+      <a href="https://www.instagram.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" />
+      </a>
+      <a href="https://x.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" alt="X (Twitter)" />
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
